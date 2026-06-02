@@ -1,0 +1,708 @@
+/* =====================================================================
+   PERSONAL WEBSITE - MAIN STYLESHEET
+   ICT114 Web Development - Assignment 2
+   Author: Tegsh-Erdene Oyunabayar
+
+   This is the single external stylesheet for the whole site.
+   It is organised top-to-bottom in clear sections so it is easy to find
+   things:
+     1. Fonts & CSS variables (colours, etc.)
+     2. Global resets and base styles
+     3. Layout helpers
+     4. Header / navigation
+     5. Hero section (home page)
+     6. About teaser
+     7. Footer
+     8. Buttons & shared components
+
+   CSS3 features used (required: at least 2):
+     - Embedded web fonts  (via the <link> in each HTML <head>)
+     - Rounded corners      (border-radius)
+     - Transitions          (smooth hover effects)
+   ===================================================================== */
+
+
+/* ============================ 1. VARIABLES ========================== */
+/* CSS variables let us reuse the same colours everywhere. Change a value
+   here once and it updates across the whole site. */
+:root {
+  --bg:        #000000;   /* near-black background with a purple tint   */
+  --bg-soft:   #03020a;   /* slightly lighter panel background          */
+  --card:      #1b1130;   /* image card / box background                */
+  --accent:    #6d2ce6;   /* main purple accent                         */
+  --accent-2:  #9a6bff;   /* lighter purple for hovers/highlights       */
+  --text:      #f4f1fb;   /* main light text                            */
+  --muted:     #a79bc4;   /* dim text for descriptions                  */
+  --line:      #2a1c44;   /* subtle border lines                        */
+  --text-2:    #d9d2ec;   /* slightly dimmer text for body paragraphs   */
+
+  --radius:    16px;      /* standard rounded-corner size               */
+  --maxw:      1200px;    /* maximum content width                      */
+}
+
+
+/* ====================== 2. RESET & BASE STYLES ===================== */
+/* A small reset so the design looks the same across browsers. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;   /* padding/borders count INSIDE an element's width */
+}
+
+html {
+  scroll-behavior: smooth;  /* smooth scrolling when clicking in-page links */
+}
+
+body {
+  font-family: "Manrope", sans-serif;   /* body / UI font */
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  /* Subtle purple glow at the top of the page for atmosphere */
+  background-image: radial-gradient(
+      900px 500px at 70% -10%,
+      rgba(109, 44, 230, 0.35),
+      transparent 60%);
+  background-repeat: no-repeat;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* ========================= 3. LAYOUT HELPERS ====================== */
+/* .container keeps content centred and stops it getting too wide. */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 80px 0;
+}
+
+/* A small label that sits above headings, e.g. "ABOUT ME" */
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+
+/* ====================== 4. HEADER / NAVIGATION ==================== */
+.site-header {
+  position: sticky;        /* stays at the top while scrolling */
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(10, 6, 19, 0.6);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px;
+}
+
+/* The logo uses an italic serif font for a stylish, signature feel */
+.logo {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.logo span {
+  color: var(--accent-2);   /* the little dot/accent in the logo */
+}
+
+.nav-links {
+  display: flex;
+  gap: 26px;
+  list-style: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.25s ease;   /* TRANSITION: smooth colour change */
+}
+.nav-links a:hover {
+  color: var(--accent-2);
+}
+/* An animated underline that grows on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent-2);
+  transition: width 0.25s ease;   /* TRANSITION: underline slides out */
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+.nav-links a.active {
+  color: var(--text);
+}
+
+
+/* ============================ 8. BUTTONS ========================== */
+/* (Defined early so the header CONTACT button can use it.) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 24px;
+  border-radius: 12px;                 /* ROUNDED CORNERS */
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease,     /* TRANSITION: lift + colour */
+              background-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-2);
+  transform: translateY(-2px);         /* button lifts slightly on hover */
+  box-shadow: 0 10px 24px rgba(109, 44, 230, 0.45);
+}
+
+.btn .arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+
+/* ============================ 5. HERO ============================= */
+.hero {
+  padding: 70px 0 60px;
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;  /* image | text | image */
+  align-items: center;
+  gap: 30px;
+}
+
+.hero-text {
+  text-align: center;
+}
+
+.hero-text .eyebrow {
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* The huge headline. clamp() makes it shrink on small screens. */
+.hero-title {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.6rem, 8vw, 6rem);
+  text-transform: uppercase;
+}
+
+/* The second word of the headline is an italic serif for contrast */
+.hero-title .script {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--text);
+  display: block;
+}
+
+.hero-sub {
+  max-width: 540px;
+  margin: 22px auto 30px;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+/* The two portrait cards either side of the headline */
+.hero-photo {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);        /* ROUNDED CORNERS */
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--card), #241640);
+}
+.hero-photo.lower {
+  margin-top: 90px;                    /* offsets the right photo lower */
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;     /* TRANSITION: gentle zoom on hover */
+}
+.hero-photo:hover img {
+  transform: scale(1.06);
+}
+
+/* Placeholder look when no image is added yet */
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 16px;
+}
+
+
+/* ========================= 6. ABOUT TEASER ======================= */
+.about-teaser .about-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--card), #241640);
+}
+
+.about-teaser h2 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin: 12px 0 18px;
+  text-transform: uppercase;
+}
+.about-teaser p {
+  color: var(--muted);
+  margin-bottom: 24px;
+  max-width: 560px;
+}
+
+
+/* ============================ 7. FOOTER ========================== */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+  padding: 50px 0 30px;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-brand .logo {
+  font-size: 1.4rem;
+}
+.footer-brand p {
+  color: var(--muted);
+  max-width: 280px;
+  margin-top: 10px;
+  font-size: 0.92rem;
+}
+
+.footer-nav h4 {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 14px;
+}
+.footer-nav ul {
+  list-style: none;
+}
+.footer-nav li {
+  margin-bottom: 8px;
+}
+.footer-nav a {
+  color: var(--muted);
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+.footer-nav a:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+
+/* ====================== 9. RESPONSIVE (mobile) ==================== */
+/* On narrow screens, stack the columns so it stays readable.
+   (Media queries are part of CSS3 / responsive design.) */
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-photo {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .hero-photo.lower {
+    margin-top: 0;
+  }
+  .about-teaser .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-links {
+    display: none;   /* a real mobile menu can be added later */
+  }
+}
+
+
+/* =====================================================================
+   10. INNER PAGE STYLES
+   Styles used by the other pages (About, Gallery, hobby pages, Blog,
+   Contact). They reuse the same variables, fonts and rounded/transition
+   effects as the home page.
+   ===================================================================== */
+
+/* ---- Page banner (top heading block on inner pages) ---- */
+.page-hero {
+  padding: 64px 0 24px;
+}
+.page-hero .eyebrow {
+  display: block;
+  margin-bottom: 12px;
+}
+.page-hero h1 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+.page-hero .lead {
+  color: var(--muted);
+  max-width: 640px;
+  margin-top: 18px;
+  font-size: 1.05rem;
+}
+
+/* ---- About page: photo + bio side by side ---- */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr;
+  gap: 44px;
+  align-items: start;
+}
+.bio-photo {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--card), #241640);
+}
+.bio-text h2 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.bio-text p {
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+
+/* ---- Reusable card grid (interests, facts, etc.) ---- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.card p {
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+/* ---- Gallery grid ---- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.gallery-item {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--card), #241640);
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;   /* zoom on hover */
+}
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* ---- Article / hobby page text ---- */
+.media-banner {
+  aspect-ratio: 16 / 6;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--card), #2a1750);
+  margin-bottom: 36px;
+}
+.media-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prose {
+  max-width: 760px;
+}
+.prose h2 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 34px 0 12px;
+}
+.prose p {
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+.prose ul {
+  color: var(--text-2);
+  margin: 0 0 16px 20px;
+}
+.prose li {
+  margin-bottom: 8px;
+}
+
+/* ---- Blog post cards ---- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.post-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.post-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.post-thumb {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(160deg, var(--card), #2a1750);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.post-body {
+  padding: 22px;
+}
+.post-body .meta {
+  color: var(--accent-2);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.post-body h3 {
+  margin: 8px 0 10px;
+  font-size: 1.2rem;
+}
+.post-body p {
+  color: var(--muted);
+  font-size: 0.93rem;
+  margin-bottom: 14px;
+}
+.read-more {
+  color: var(--accent-2);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+.read-more:hover {
+  color: var(--text);
+}
+
+/* ---- Contact page + form ---- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: start;
+}
+.contact-info h2 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.contact-info p {
+  color: var(--text-2);
+  margin-bottom: 14px;
+}
+.contact-info .detail {
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.contact-info .detail strong {
+  color: var(--text);
+}
+
+.form-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px;
+}
+.field {
+  margin-bottom: 18px;
+}
+.field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #0e0820;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(109, 44, 230, 0.25);
+}
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* The error message is hidden by default and only shown when JavaScript
+   adds the "invalid" class to a field. */
+.error-msg {
+  color: #ff8597;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: none;
+}
+.field.invalid input,
+.field.invalid textarea {
+  border-color: #ff5d75;
+}
+.field.invalid .error-msg {
+  display: block;
+}
+
+/* Success banner shown after a valid submit */
+.form-success {
+  display: none;
+  background: rgba(109, 44, 230, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+}
+.form-success.show {
+  display: block;
+}
+
+/* ---- Responsive tweaks for inner pages ---- */
+@media (max-width: 860px) {
+  .bio-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .cards,
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .cards,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}

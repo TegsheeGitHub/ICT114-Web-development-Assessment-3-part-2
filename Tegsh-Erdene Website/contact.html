@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tegsh-Erdene Oyunabayar | Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Manrope:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">Tegsh-Erdene Oyunabayar<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="hobby1.html">Gaming</a></li>
+        <li><a href="hobby2.html">Music</a></li>
+        <li><a href="hobby3.html">Culture</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary active-btn">Contact <span class="arrow">&rarr;</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1>Get In Touch</h1>
+        <p class="lead">Have a question or just want to say hi? Fill in the
+          form and I'll get back to you.</p>
+      </div>
+    </section>
+
+    <section style="padding-top:20px;">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <h2>Let's talk</h2>
+          <p>I'd love to hear from you. Use the form, or reach me directly
+             using the details below.</p>
+          <p class="detail"><strong>Email:</strong> tegsheewow@gmail.com</p>
+          <p class="detail"><strong>Location:</strong> Sydney, Australia</p>
+          <p class="detail"><strong>Study:</strong> BIT, Wentworth Institute</p>
+        </div>
+        <div class="form-card">
+          <div id="formSuccess" class="form-success">
+            Thanks! Your message passed validation and is ready to send.
+          </div>
+
+          <form id="contactForm"
+                action="mailto:tegsheewow@gmail.com"
+                method="post"
+                enctype="text/plain"
+                novalidate>
+
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Your name">
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="text" id="email" name="email" placeholder="you@example.com">
+              <span class="error-msg">Please enter a valid email address.</span>
+            </div>
+
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="What's this about?">
+              <span class="error-msg">Please enter a subject.</span>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Write your message..."></textarea>
+              <span class="error-msg">Please enter a message.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Send message <span class="arrow">&rarr;</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">Tegsh-Erdene Oyunabayar<span>.</span></a>
+          <p>A personal website built for ICT114 Web Development &mdash;
+             sharing my hobbies, interests and projects.</p>
+        </div>
+        <nav class="footer-nav">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-nav">
+          <h4>My Hobbies</h4>
+          <ul>
+            <li><a href="hobby1.html">Gaming</a></li>
+            <li><a href="hobby2.html">Music</a></li>
+            <li><a href="hobby3.html">Culture</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Tegsh-Erdene Oyunabayar. Built by hand with HTML5, CSS3 &amp; JavaScript.
+      </div>
+    </div>
+  </footer>
+
+  <script src="validation.js"></script>
+
+</body>
+</html>
